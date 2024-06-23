@@ -1,0 +1,108 @@
+﻿li {
+    user-select: none; /* Para navegadores modernos */
+    -webkit-user-select: none; /* Para navegadores baseados em WebKit */
+    -moz-user-select: none; /* Para Firefox */
+    -ms-user-select: none; /* Para Internet Explorer/Edge */
+}
+
+.directory-container {
+    font-size: 17px;
+}
+
+.content-name {
+    margin-bottom: 10px; /* Ajuste o valor conforme necessário */
+}
+
+.folder .content-name {
+    margin-bottom: 15px; /* Ajuste o valor conforme necessário */
+}
+
+.folder-icon {
+    width: 25px;
+    height: 25px;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBVcGxvYWRlZCB0bzogU1ZHIFJlcG8sIHd3dy5zdmdyZXBvLmNvbSwgR2VuZXJhdG9yOiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4NCjxzdmcgaGVpZ2h0PSI4MDBweCIgd2lkdGg9IjgwMHB4IiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiANCgkgdmlld0JveD0iMCAwIDQ5NiA0OTYiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6I0MxODIwNTsiIGQ9Ik00ODQuOCw0OEgyODcuMmMtNi40LDAtMTIsMC0xOC40LDkuNkwyNTguNCw3MkgyNC44QzExLjIsNzIsMCw4NC44LDAsOTguNHYzMTQuNA0KCUMwLDQyNi40LDExLjIsNDQwLDI0LjgsNDQwaDQ0Ni40YzEzLjYsMCwyNC44LTEzLjYsMjQuOC0yNy4yVjE2OS42Vjk5LjJWNTcuNkM0OTYsNTIsNDkxLjIsNDgsNDg0LjgsNDh6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojQUE2RTA0OyIgZD0iTTQ4NS42LDM3MS4yYzYuNC00LjgsMTAuNC0xMiwxMC40LTIwVjE2OS42Vjk5LjJWNTcuNmMwLTUuNi00LjgtOS42LTExLjItOS42SDI4Ny4yDQoJYy02LjQsMC0xMiwwLTE4LjQsOS42TDI1OC40LDcySDI0LjhDMTIsNzIsMS42LDgyLjQsMCw5NC40TDQ4NS42LDM3MS4yeiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZGQjAwMDsiIGQ9Ik00OTYsNDI0YzAsMTMuNi0xMS4yLDI0LTI0LjgsMjRIMjQuOEMxMS4yLDQ0OCwwLDQzNy42LDAsNDI0bDgtMjUzLjZDOCwxNTYuOCwxOS4yLDE0NCwzMi44LDE0NEg0NjQNCgljMTMuNiwwLDI0LjgsMTIuOCwyNC44LDI2LjRMNDk2LDQyNHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRkMyMDA7IiBkPSJNNDkyLjgsNDM2TDkuNiwxNjIuNEM4LjgsMTY1LjYsOCwxNjguOCw4LDE3MkwwLDQyNGMwLDEzLjYsMTEuMiwyNCwyNC44LDI0aDQ0Ni40DQoJQzQ4MCw0NDgsNDg4LDQ0My4yLDQ5Mi44LDQzNnoiLz4NCjwvc3ZnPg==');
+    background-size: cover;
+    display: inline-block;
+}
+
+
+.arrow-right {
+    width: 25px;
+    height: 25px;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPg0KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik05IDVMMTQuMTUgMTBDMTQuNDIzNyAxMC4yNTYzIDE0LjY0MTkgMTAuNTY1OSAxNC43OTEgMTAuOTA5OUMxNC45NDAyIDExLjI1MzkgMTUuMDE3MSAxMS42MjUgMTUuMDE3MSAxMkMxNS4wMTcxIDEyLjM3NSAxNC45NDAyIDEyLjc0NTggMTQuNzkxIDEzLjA4OThDMTQuNjQxOSAxMy40MzM5IDE0LjQyMzcgMTMuNzQzNyAxNC4xNSAxNEw5IDE5IiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4NCjwvc3ZnPg==');
+    background-size: cover;
+    display: inline-block;
+}
+
+.arrow-down {
+    width: 25px;
+    height: 25px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTE5IDlMMTQgMTQuMTU5OUMxMy43NDI5IDE0LjQzMjMgMTMuNDMyOSAxNC42NDkzIDEzLjA4OSAxNC43OTc2QzEyLjc0NTEgMTQuOTQ1OSAxMi4zNzQ1IDE1LjAyMjUgMTIgMTUuMDIyNUMxMS42MjU1IDE1LjAyMjUgMTEuMjU0OSAxNC45NDU5IDEwLjkxMDkgMTQuNzk3NkMxMC41NjcgMTQuNjQ5MyAxMC4yNTcxIDE0LjQzMjMgMTAgMTQuMTU5OUw1IDkiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==');
+    background-size: cover;
+    display: inline-block;
+}
+
+.folder {
+}
+
+ul {
+    list-style: none;
+}
+
+.arrow {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.file .content-name:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+.folder .content-name:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+.content-name {
+    border-radius: 6px;
+    padding: 0.2rem;
+    cursor: default;
+}
+
+
+/*
+    context-menu
+
+*/
+#custom-context-menu {
+    margin: 0;
+    position: absolute;
+    z-index: 1000000;
+    width: 150px;
+    background: black;
+    transform: scale(0);
+    transform-origin: top left;
+}
+
+    #custom-context-menu.active {
+        transform: scale(1);
+        transition: transform 200ms ease-in-out
+    }
+
+    #custom-context-menu .item {
+        padding: 8px 10px;
+        font-size: 15px;
+        color: black;
+        background-color:white;
+
+    }
+
+        #custom-context-menu .item:hover {
+            background-color: #2980b9;
+        }
+
+        #custom-context-menu .item i {
+            display: inline-block;
+            margin-right: 5px;
+        }
