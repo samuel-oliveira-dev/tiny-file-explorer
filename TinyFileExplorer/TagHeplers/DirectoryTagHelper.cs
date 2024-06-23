@@ -35,6 +35,8 @@ namespace TinyFileExplorer.TagHelpers
                 Console.WriteLine(op);
             }
 
+    
+
             var script = Properties.Resources.tinyFileExplorerScript.ToString();
             var style = Properties.Resources.tinyFileExplorerStyle.ToString();
             var contextMenu = @"<div id=""contextMenu"" class=""context-menu"">

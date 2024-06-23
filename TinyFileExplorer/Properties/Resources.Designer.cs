@@ -22,7 +22,7 @@ namespace TinyFileExplorer.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace TinyFileExplorer.Properties {
         ///   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TinyFileExplorer.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace TinyFileExplorer.Properties {
         ///   pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,7 +61,28 @@ namespace TinyFileExplorer.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a &lt;div id=&quot;custom-context-menu&quot;&gt;
+        ///    &lt;div class=&quot;item&quot;&gt;
+        ///        &lt;i&gt;&lt;/i&gt; Delete
+        ///    &lt;/div&gt;
+        ///    &lt;div class=&quot;item&quot;&gt;
+        ///        &lt;i&gt;&lt;/i&gt; Copy
+        ///    &lt;/div&gt;
+        ///
+        ///&lt;/div&gt;
+        ///.
+        /// </summary>
+        public static string components {
+            get {
+                return ResourceManager.GetString("components", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a document.addEventListener(&apos;DOMContentLoaded&apos;, function () {
+        ///
+        ///   
+        ///
         ///    // Seleciona todos os elementos com a classe &apos;arrow&apos;
         ///    const arrows = document.querySelectorAll(&apos;.arrow&apos;);
         ///
@@ -72,9 +93,9 @@ namespace TinyFileExplorer.Properties {
         ///
         ///            // Seleciona o elemento pai com a classe &apos;folder&apos;
         ///            const folder = arrow.closest(&apos;.folder&apos;);
-        ///            const  [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///          [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
-        internal static string tinyFileExplorerScript {
+        public static string tinyFileExplorerScript {
             get {
                 return ResourceManager.GetString("tinyFileExplorerScript", resourceCulture);
             }
@@ -103,7 +124,7 @@ namespace TinyFileExplorer.Properties {
         ///.folder-icon {
         ///    widt [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
-        internal static string tinyFileExplorerStyle {
+        public static string tinyFileExplorerStyle {
             get {
                 return ResourceManager.GetString("tinyFileExplorerStyle", resourceCulture);
             }
