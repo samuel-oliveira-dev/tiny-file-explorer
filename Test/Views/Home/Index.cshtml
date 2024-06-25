@@ -29,9 +29,14 @@
         color: white;
         background-color: #2980b9;
     }
+    #context-menu hr{
+        padding: 0;
+        margin: 0;
+    }
 </style>
 
-<directory asp-controller="Test"></directory>
+<directory asp-controller="Home" asp-action="HandleTinyFileExplorer" asp-root="Default"></directory>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function(){
@@ -70,7 +75,13 @@
         function handleContextAction(action, element) {
             console.log(action)
             console.log(element)
-            console.log(getCompletePath(getParentFolderPaths(element)))
+            let path = getCompletePath(getParentFolderPaths(element))
+            let form = new FormData()
+            
+            form.append('action', action)
+            form.append('path', path)
+            executeAction(form)
+
         }
 
         function getParentFolderPaths(element) {
@@ -95,8 +106,21 @@
             }, '')
         }
 
-        function executeAction(controller, path) {
+        function executeAction(request) {
+            let controller = getControllerName()
+            let action =  getActionName()
+            fetch(`${controller}/${action}`, {
+                method: 'POST',
+                body: request
+            })
+        }
 
+        function getControllerName(){
+            return document.getElementById('directory-container').getAttribute('asp-controller')
+        }
+
+        function getActionName(){
+            return document.getElementById('directory-container').getAttribute('asp-action')
         }
 
        
@@ -122,20 +146,11 @@
     <div class="item" data-action = "create">
         <i></i> Create
     </div>
+    <hr />
     <div class="item" data-action="delete">
         <i></i> Delete
     </div>
 </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script type="text/html" id="MyTemplate">
-    <directory></directory>
-</script>
-
-<script>
-    $(document).ready(function () {
-        $('#button').click(function(){
-            $('#container').html($('#MyTemplate').html())
-        })
-    })
-</script>
+<

@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Test.Models;
-
+using TinyFileExplorer;
+using TinyFileExplorer.Utilities;
 namespace Test.Controllers
 {
     public class HomeController : Controller
@@ -16,6 +17,11 @@ namespace Test.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult HandleTinyFileExplorer(Request request)
+        {
+            return Ok();
         }
 
         public IActionResult Privacy()

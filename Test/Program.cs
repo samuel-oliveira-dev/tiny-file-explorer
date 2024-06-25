@@ -1,8 +1,10 @@
 using TinyFileExplorer;
 using TinyFileExplorer.Configurations;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddTinyFileExplorer(options => options.RootDirectories = new List<string>() { @"C:\Diretorio1",
-                @"D:\Diretorio2"});
+builder.Services.AddTinyFileExplorer(options => options.RootDirectories = new List<RootDirectory>() 
+{
+    new RootDirectory(){Name = "Default", Path =  "C:\\Users\\samuk\\Documents\\FileHub\\RootFolder"}
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -18,7 +20,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseEmbeddedStaticFiles("TinyFileExplorer", typeof(Program).Assembly);
+//app.UseEmbeddedStaticFiles("TinyFileExplorer", typeof(Program).Assembly);
 
 app.UseRouting();
 

@@ -17,6 +17,12 @@ namespace TinyFileExplorer.TagHelpers
         [HtmlAttributeName("asp-controller")]
         public string AspController {  get; set; }
 
+        [HtmlAttributeName("asp-action")]
+        public string AspAction {  get; set; }
+
+        [HtmlAttributeName("asp-root")]
+        public string AspRoot {  get; set; }
+
         public DirectoryTagHelper(IOptions<TinyFileExplorerServiceOptions> options)
         {
             _options = options;
@@ -26,10 +32,11 @@ namespace TinyFileExplorer.TagHelpers
         {
             base.Process(context, output);
 
-            //string rootPath = "C:\\Users\\samuk\\Documents\\FileHub\\RootFolder";
-            string rootPath = "C:\\Users\\samuel.oliveira\\Documents\\RootFolder";
-            var rootDirectory = new VirtualDirectory(rootPath);
-            rootDirectory.Tree.Explore(rootDirectory.Tree.Root);
+            var rootDirectory = _options.Value.RootDirectories.Where(r => r.Name == AspRoot).FirstOrDefault();
+            var path = rootDirectory.Path != null ? rootDirectory.Path : "";
+
+            //string rootPath = "C:\\Users\\samuel.oliveira\\Documents\\RootFolder";
+            var virtualDirectory = new VirtualDirectory(path);
 
             // Load JavaScript and CSS files
 
@@ -51,8 +58,7 @@ namespace TinyFileExplorer.TagHelpers
                                     <i></i> Copy
                                 </div>
 
-                            </div>
-";
+                            </div>";
 
             var scriptTag = new TagBuilder("script");
             scriptTag.InnerHtml.AppendHtml(script);
@@ -62,16 +68,24 @@ namespace TinyFileExplorer.TagHelpers
 
             output.PostElement.AppendHtml(scriptTag);
             output.PostElement.AppendHtml(styleTag);
+            output.Attributes.SetAttribute("id", "directory-container");
 
-            if(!string.IsNullOrEmpty(AspController))
+            output.Attributes.SetAttribute("asp-controller", "");
+            output.Attributes.SetAttribute("asp-action", "");
+            if (!string.IsNullOrEmpty(AspController))
             {
                 output.Attributes.SetAttribute("asp-controller", AspController);
+                
+            }
+
+            if(!string.IsNullOrEmpty(AspAction))
+            {
+                output.Attributes.SetAttribute("asp-action", AspAction);
             }
 
             // Generate HTML for the directory structure
-            var html = rootDirectory.GenerateHtml(rootDirectory.Tree.Root);
-            //Console.WriteLine(Resources.Css + html + Resources.Javascript);
-            output.Content.AppendHtml(contextMenu + html );
+            var html = virtualDirectory.GenerateHtml(virtualDirectory.Tree.Root);
+            output.Content.AppendHtml(html);
             output.TagName = "div";
         }
 
