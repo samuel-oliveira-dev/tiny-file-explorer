@@ -1,10 +1,141 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
 }
 
-<div class="text-center">
+<style>
+    #context-menu{
+        position: fixed;
+        z-index: 10000;
+        width: 150px;
+        border: 1px solid gray;
+        background-color: white;
+        border-radius: 4px;
+    }
+
+    #context-menu .item{
+        padding: 8px 10px;
+        font-size: 15px;
+        color: black;
+        cursor: pointer;
+    }
+
+    #context-menu .item i {
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    #context-menu .item:hover{
+        color: white;
+        background-color: #2980b9;
+    }
+</style>
+
+<directory asp-controller="Test"></directory>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        let clickables = document.querySelectorAll('.clickable')
+        let clickedElement = null;
+
+        hideContextMenu()
+        clickables.forEach(el => el.addEventListener('contextmenu', event => {
+            event.preventDefault()
+            event.stopPropagation()
+            showContextMenu(event)
+            clickedElement = event.currentTarget
+
+            console.log('ok')
+        }))
+
+        function showContextMenu(event) {
+            let contextMenu = document.getElementById('context-menu')
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = `${event.pageX}px`;
+            contextMenu.style.top = `${event.pageY}px`;
+        }
+
+        let items = document.querySelectorAll('.item')
+        items.forEach(elem => elem.addEventListener('click', function(){
+            handleContextAction(this.dataset.action, clickedElement)
+        }))
+
+        function hideContextMenu() {
+            let contextMenu = document.getElementById('context-menu')
+            document.addEventListener('click', function () {
+                contextMenu.style.display = 'none';
+            });
+        }
+
+        function handleContextAction(action, element) {
+            console.log(action)
+            console.log(element)
+            console.log(getCompletePath(getParentFolderPaths(element)))
+        }
+
+        function getParentFolderPaths(element) {
+            let paths = [];
+            paths.push(element.getAttribute('path'))
+            let currentElement = element.parentElement;
+
+            while (currentElement) {
+                if (currentElement.classList.contains('folder')) {
+                    paths.push(currentElement.getAttribute('path'));
+                }
+                currentElement = currentElement.parentElement;
+            }
+
+            return paths;
+        }
+
+        function getCompletePath(paths) {
+            paths = Array.from(paths)
+            return paths.reduce(function (acc, current) {
+                return current + acc
+            }, '')
+        }
+
+        function executeAction(controller, path) {
+
+        }
+
+       
+
+        
+    })
+    
+
+</script>
+
+
+<div class="text-center" >
+    <button id="button">click me</button>
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<directory></directory>
+<div id="container">
+
+</div>
+
+<div id="context-menu" style="display: none">
+    <div class="item" data-action = "create">
+        <i></i> Create
+    </div>
+    <div class="item" data-action="delete">
+        <i></i> Delete
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/html" id="MyTemplate">
+    <directory></directory>
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#button').click(function(){
+            $('#container').html($('#MyTemplate').html())
+        })
+    })
+</script>

@@ -14,6 +14,9 @@ namespace TinyFileExplorer.TagHelpers
     {
         private readonly IOptions<TinyFileExplorerServiceOptions> _options;
 
+        [HtmlAttributeName("asp-controller")]
+        public string AspController {  get; set; }
+
         public DirectoryTagHelper(IOptions<TinyFileExplorerServiceOptions> options)
         {
             _options = options;
@@ -23,7 +26,8 @@ namespace TinyFileExplorer.TagHelpers
         {
             base.Process(context, output);
 
-            string rootPath = "C:\\Users\\samuk\\Documents\\FileHub\\RootFolder";
+            //string rootPath = "C:\\Users\\samuk\\Documents\\FileHub\\RootFolder";
+            string rootPath = "C:\\Users\\samuel.oliveira\\Documents\\RootFolder";
             var rootDirectory = new VirtualDirectory(rootPath);
             rootDirectory.Tree.Explore(rootDirectory.Tree.Root);
 
@@ -59,10 +63,16 @@ namespace TinyFileExplorer.TagHelpers
             output.PostElement.AppendHtml(scriptTag);
             output.PostElement.AppendHtml(styleTag);
 
+            if(!string.IsNullOrEmpty(AspController))
+            {
+                output.Attributes.SetAttribute("asp-controller", AspController);
+            }
+
             // Generate HTML for the directory structure
             var html = rootDirectory.GenerateHtml(rootDirectory.Tree.Root);
             //Console.WriteLine(Resources.Css + html + Resources.Javascript);
             output.Content.AppendHtml(contextMenu + html );
+            output.TagName = "div";
         }
 
   

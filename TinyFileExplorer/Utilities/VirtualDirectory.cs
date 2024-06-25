@@ -82,13 +82,13 @@
                 {
                     if (child.Content is Folder)
                     {
-                        code += $"<li class=\"folder context-menu\" path=\"\\{child.Content.Value}\" state=\"open\"><i class=\"arrow arrow-down\"></i><i class=\"folder-icon\"></i><span class=\"content-name\">{child.Content.Value}  </span>" + GenerateHtml(child) + "</li>";
+                        code += $"<li class=\"folder clickable\" path=\"\\{child.Content.Value}\" state=\"open\"><i class=\"arrow arrow-down\"></i><i class=\"folder-icon\"></i><span class=\"content-name\">{child.Content.Value}  </span>" + GenerateHtml(child) + "</li>";
                     }
                     else
                     {
                         if (child.Content is Utilities.File)
                         {
-                            code += $"<li class=\"context-menu file\"  path=\"\\{child.Content.Value}\">{Icons.FileIcon}<span class=\"content-name\">{child.Content.Value}</span>" + GenerateHtml(child) + "</li>";
+                            code += $"<li class=\"clickable file\"  path=\"\\{child.Content.Value}\">{Icons.FileIcon}<span class=\"content-name\">{child.Content.Value}</span>" + GenerateHtml(child) + "</li>";
                         }
                     }
 
