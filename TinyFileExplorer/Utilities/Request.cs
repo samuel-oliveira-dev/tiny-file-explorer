@@ -6,6 +6,6 @@ namespace TinyFileExplorer.Utilities
     {
         public string Path {  get; set; }
         public string Action { get; set; }
-        public IFormFile Files { get; set; }
+        public List<IFormFile> Files { get; set; }
     }
 }

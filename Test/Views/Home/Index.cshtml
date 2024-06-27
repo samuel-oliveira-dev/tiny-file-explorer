@@ -35,21 +35,16 @@
     }
 </style>
 
-<<<<<<< HEAD
 <directory asp-controller="Home" asp-action="HandleTinyFileExplorer" asp-root="Alternative"></directory>
-=======
-<directory asp-controller="Home" asp-action="HandleTinyFileExplorer" asp-root="Default"></directory>
-<input type="file" id="input-file" hidden/>
->>>>>>> 3c361ca30c5c926a7eb919b6f006a09f85012876
+<input type="file" id="input-file" hidden multiple/>
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded', function () {
         let clickables = document.querySelectorAll('.clickable')
         let clickedElement = null;
 
         hideContextMenu()
-        setUploadFilesEvent()
         clickables.forEach(el => el.addEventListener('contextmenu', event => {
             event.preventDefault()
             event.stopPropagation()
@@ -67,7 +62,7 @@
         }
 
         let items = document.querySelectorAll('.item')
-        items.forEach(elem => elem.addEventListener('click', function(){
+        items.forEach(elem => elem.addEventListener('click', function () {
             handleContextAction(this.dataset.action, clickedElement)
         }))
 
@@ -85,38 +80,40 @@
             let form = new FormData()
 
             if (action == 'create') {
-                actionCreateHandler()
-                setUploadFilesEvent(path)
+                actionCreateHandler(path)
             } else {
                 form.append('action', action)
                 form.append('path', path)
                 executeAction(form)
             }
-            
-            
+
+
 
         }
 
-        function actionCreateHandler(){
-            document.getElementById('input-file').click()
-        }
-
-        function setUploadFilesEvent(path) {
-            document.getElementById('input-file').addEventListener('change', function(){
-                const files = this;
-                const formData = new FormData();
-                for (i = 0; i < file.length; ++i){
+        function actionCreateHandler(path) {
+            let inputFile = document.createElement('input')
+            inputFile.setAttribute('type', 'file')
+            inputFile.setAttribute('id', 'input-file')
+            inputFile.setAttribute('multiple', '')
+            inputFile.click()
+            inputFile.addEventListener('change', function (event) {
+                let files = event.target.files;
+                let formData = new FormData()
+                for (i = 0; i < files.length; ++i) {
                     formData.append('Files', files[i])
                 }
+                
                 formData.append('action', 'create')
                 formData.append('path', path)
-
-                executeAction(formData).then(function (response) {
-                    document.getElementById('input-file').removeEventListener()
-                })
-
+                executeAction(formData)
             })
+
+            //document.getElementById('input-file').click()
         }
+
+
+
 
         function getParentFolderPaths(element) {
             let paths = [];
@@ -142,26 +139,26 @@
 
         function executeAction(request) {
             let controller = getControllerName()
-            let action =  getActionName()
-           return fetch(`${controller}/${action}`, {
+            let action = getActionName()
+            return fetch(`${controller}/${action}`, {
                 method: 'POST',
                 body: request
             })
         }
 
-        function getControllerName(){
+        function getControllerName() {
             return document.getElementById('directory-container').getAttribute('asp-controller')
         }
 
-        function getActionName(){
+        function getActionName() {
             return document.getElementById('directory-container').getAttribute('asp-action')
         }
 
-       
 
-        
+
+
     })
-    
+
 
 </script>
 
@@ -187,4 +184,3 @@
 </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<
