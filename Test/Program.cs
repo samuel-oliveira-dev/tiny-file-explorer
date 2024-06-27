@@ -3,7 +3,8 @@ using TinyFileExplorer.Configurations;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTinyFileExplorer(options => options.RootDirectories = new List<RootDirectory>() 
 {
-    new RootDirectory(){Name = "Default", Path =  "C:\\Users\\samuk\\Documents\\FileHub\\RootFolder"}
+    new RootDirectory(){Name = "Default", Path =  "C:\\Users\\samuk\\Documents\\FileHub\\RootFolder"},
+    new RootDirectory(){Name = "Alternative", Path = "C:\\Users\\samuel.oliveira\\Documents\\RootFolder"}
 });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
