@@ -36,6 +36,7 @@
 </style>
 
 <directory asp-controller="Home" asp-action="HandleTinyFileExplorer" asp-root="Default"></directory>
+<input type="file" id="input-file" hidden/>
 
 
 <script>
@@ -44,6 +45,7 @@
         let clickedElement = null;
 
         hideContextMenu()
+        setUploadFilesEvent()
         clickables.forEach(el => el.addEventListener('contextmenu', event => {
             event.preventDefault()
             event.stopPropagation()
@@ -77,11 +79,39 @@
             console.log(element)
             let path = getCompletePath(getParentFolderPaths(element))
             let form = new FormData()
-            
-            form.append('action', action)
-            form.append('path', path)
-            executeAction(form)
 
+            if (action == 'create') {
+                actionCreateHandler()
+                setUploadFilesEvent(path)
+            } else {
+                form.append('action', action)
+                form.append('path', path)
+                executeAction(form)
+            }
+            
+            
+
+        }
+
+        function actionCreateHandler(){
+            document.getElementById('input-file').click()
+        }
+
+        function setUploadFilesEvent(path) {
+            document.getElementById('input-file').addEventListener('change', function(){
+                const files = this;
+                const formData = new FormData();
+                for (i = 0; i < file.length; ++i){
+                    formData.append('Files', files[i])
+                }
+                formData.append('action', 'create')
+                formData.append('path', path)
+
+                executeAction(formData).then(function (response) {
+                    document.getElementById('input-file').removeEventListener()
+                })
+
+            })
         }
 
         function getParentFolderPaths(element) {
@@ -109,7 +139,7 @@
         function executeAction(request) {
             let controller = getControllerName()
             let action =  getActionName()
-            fetch(`${controller}/${action}`, {
+           return fetch(`${controller}/${action}`, {
                 method: 'POST',
                 body: request
             })
@@ -144,7 +174,7 @@
 
 <div id="context-menu" style="display: none">
     <div class="item" data-action = "create">
-        <i></i> Create
+        <i></i> Upload File
     </div>
     <hr />
     <div class="item" data-action="delete">
